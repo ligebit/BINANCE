@@ -1,0 +1,13 @@
+{
+    "telegramUsername": "444733064",
+    "telegramBotToken": "6823379193:AAGl4bv-lp4PJWJaNeQd1igpYLOUxXWxyj4",
+    "tradingLock": 60000.00000000001,
+    "settingsLock": 60000.00000000001,
+    "binanceApiKey": "g",
+    "binanceSecretKey": "o",
+    "maxLoss": -10,
+    "loopTimeMs": 2000,
+    "lastSettingsChangeDate": 0,
+    "settingsLastChangeDate": 1701352369870,
+    "tradingLastLockDate": 1701181076807
+}
