@@ -9,7 +9,7 @@ function sleep(ms) {
 
 function getConfig(file) {
     return new Promise((res, rej) => {
-        readFile(__dirname + '\\' +  file, (err, data) => {
+        readFile(__dirname + '\/' +  file, (err, data) => {
             if (err) return rej(err);
 
             return res(JSON.parse(data.toString()));
@@ -19,7 +19,7 @@ function getConfig(file) {
 
 function saveConfig(obj, file) {
     return new Promise((res, rej) => {
-        writeFile(__dirname + '\\' + file, JSON.stringify(obj), (err) => {
+        writeFile(__dirname + '\/' + file, JSON.stringify(obj), (err) => {
             if (err) return rej(err);
 
             return res();
