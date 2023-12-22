@@ -187,7 +187,7 @@ setSettingsScene.action("accept", async (ctx) => {
             return ctx.reply(
                 `изменение настроек заблокировано до ${new Date(
                     config.settingsLastChangeDate + config.settingsLock
-                )}`
+                ).toLocaleString("ru", {timeZone: 'Europe/Moscow'})}`
             );
 
         config.tradingLock = ctx.wizard.state.data.tradingLock;
@@ -245,9 +245,9 @@ module.exports = class Bot {
             ctx.reply(
                 `последние изменение: ${new Date(
                     config.settingsLastChangeDate
-                )}\nдата разблокировки настроек: ${new Date(
+                ).toLocaleString("ru", {timeZone: 'Europe/Moscow'})}\nдата разблокировки настроек: ${new Date(
                     config.settingsLastChangeDate + config.settingsLock
-                )}\nbinance api key: ${
+                ).toLocaleString("ru", {timeZone: 'Europe/Moscow'})}\nbinance api key: ${
                     config.binanceApiKey
                 }\nbinance secret key: ${
                     config.binanceSecretKey
