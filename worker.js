@@ -2,6 +2,9 @@ const Binance = require('binance-api-node').default
 const Bot = require('./bot.js');
 const { sleep, getConfig, saveConfig } = require('./utils.js');
 const config = require('./config.json');
+const { Telegraf, Markup, Scenes, session, Composer } = require("telegraf");
+
+const bot = new Telegraf(config.telegramBotToken);
 
 async function iter() {
     const config = await getConfig("config.json");
