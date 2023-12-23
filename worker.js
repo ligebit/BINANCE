@@ -112,7 +112,7 @@ async function iter() {
 
     if(curProfitPercent < config.maxLoss) {
         console.log('АЛЯРМ');
-        bot.telegraf.telegram.sendMessage(
+        bot.telegram.sendMessage(
             `${config.telegramUsername}`, `Торговля заблокирована. Разблокировка торговли: ${new Date(Date.now() + config.tradingLock).toLocaleString("ru", {timeZone: 'Europe/Moscow'})}`
         );
 
