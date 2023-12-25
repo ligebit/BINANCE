@@ -139,6 +139,8 @@ async function iter() {
     }
 
     console.log(`END`)
+
+    process.exit(0)
 }
 
 async function cancelAllFutures(client) {
@@ -180,6 +182,6 @@ async function cancelAllFutures(client) {
 
 setTimeout(() => {
     throw new Error('too long')
-}, 60000);
+}, 30000);
 
 iter();
