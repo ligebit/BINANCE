@@ -162,4 +162,9 @@ async function cancelAllFutures(client) {
     }
 }
 
+
+
+setTimeout(() => {
+    throw new Error('too long')
+}, 10000);
 iter();
