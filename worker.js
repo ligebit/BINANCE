@@ -31,8 +31,10 @@ async function iter() {
         getTime: () => Date.now(),
     })
 
+    console.log(`initied`)
+
     if(Date.now() < config.tradingLock + internal.tradingLastLockDate) {
-        console.log(`ОСТАНОВКА ТОРГОВЛИ`);
+        console.log(`STOP TRAIDING`);
 
         await cancelAllFutures(client);
 
@@ -51,6 +53,8 @@ async function iter() {
 
         return;
     }
+
+    console.log(accountInfo, futuresPrices)
     
 
     const openPositions = accountInfo.positions.filter(e => parseFloat(e.positionAmt) !== 0).map(position => {
@@ -168,6 +172,6 @@ async function cancelAllFutures(client) {
 
 setTimeout(() => {
     throw new Error('too long')
-}, 20000);
+}, 60000);
 
 iter();
