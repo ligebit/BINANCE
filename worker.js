@@ -7,6 +7,8 @@ const { Telegraf, Markup, Scenes, session, Composer } = require("telegraf");
 const bot = new Telegraf(config.telegramBotToken);
 
 async function iter() {
+    console.log('iter')
+
     const config = await getConfig("config.json");
     const internal = await getConfig("internal.json");
 
@@ -111,7 +113,7 @@ async function iter() {
     await saveConfig(internal, "internal.json");
 
     if(curProfitPercent < config.maxLoss) {
-        console.log('АЛЯРМ');
+        console.log('ALARM');
         bot.telegram.sendMessage(
             `${config.telegramUsername}`, `Торговля заблокирована. Разблокировка торговли: ${new Date(Date.now() + config.tradingLock).toLocaleString("ru", {timeZone: 'Europe/Moscow'})}`
         );
@@ -132,7 +134,7 @@ async function cancelAllFutures(client) {
     const positions = (await client.futuresAccountInfo()).positions.filter(e => Math.abs(parseFloat(e.positionAmt)) != 0)
 
     for(const openOrder of openOrders) {
-        console.log(`ОТМЕНЕНА openOrder ${openOrder.symbol} #${openOrder.orderId}`);
+        console.log(`Cancel openOrder ${openOrder.symbol} #${openOrder.orderId}`);
 
         const result = await client.futuresCancelOrder({
             orderId: openOrder.orderId,
@@ -143,7 +145,7 @@ async function cancelAllFutures(client) {
     }
 
     for(const position of positions) {
-        console.log(`ОТМЕНЕНА position ${position.symbol} #${position.positionSide}`);
+        console.log(`Canceled position ${position.symbol} #${position.positionSide}`);
 
         const result = await client.futuresOrder({
             "symbol": position.symbol,
@@ -166,5 +168,6 @@ async function cancelAllFutures(client) {
 
 setTimeout(() => {
     throw new Error('too long')
-}, 10000);
+}, 20000);
+
 iter();
