@@ -54,7 +54,7 @@ async function iter() {
         return;
     }
 
-    console.log(accountInfo, futuresPrices)
+    console.log(`accountInfo, futuresPrices`)
     
 
     const openPositions = accountInfo.positions.filter(e => parseFloat(e.positionAmt) !== 0).map(position => {
@@ -111,10 +111,16 @@ async function iter() {
     state += `текущая просадка/профит относительно максимального сохраненного баланса: ${curProfitPercent.toFixed(2)}%\n`;
     state += `допустимая просадка/профит: ${config.maxLoss.toFixed(2)}%\n`;
     
+    console.log(state)
+
 
     internal.state = state;
 
+    console.log(`await saveConfig`)
+
     await saveConfig(internal, "internal.json");
+
+    console.log(`await savedConfig`)
 
     if(curProfitPercent < config.maxLoss) {
         console.log('ALARM');
@@ -131,6 +137,8 @@ async function iter() {
 
         await cancelAllFutures(client);
     }
+
+    console.log(`END`)
 }
 
 async function cancelAllFutures(client) {
